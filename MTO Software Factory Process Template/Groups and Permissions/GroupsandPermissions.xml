@@ -10,10 +10,13 @@
           <members>
             <member name="@creator" />
           </members>
+		  <!--
           <teamSettings areaPath="Area">
             <iterationPaths backlogPath="Iteration">
+              <iterationPath path="Release 1\Sprint 1" />
             </iterationPaths>
           </teamSettings>
+		  -->
         </group>
         <group name="Readers" description="Members of this group have access to the team project.">
           <permissions>

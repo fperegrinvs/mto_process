@@ -21,8 +21,6 @@
         <files>
           <!-- Shared documents -->
           <file source="Windows SharePoint Services\Shared Documents\Wiki.htm" documentLibrary="Shared Documents" target="Wiki.htm" />
-          <file source="Windows SharePoint Services\Shared Documents\Project Management\Issues.xlsx" documentLibrary="Shared Documents" target="Iteration 1/Issues.xlsx" queryId="Current Iteration/Open Issues" />
-          <file source="Windows SharePoint Services\Shared Documents\Bugs\Triage.xlsx" documentLibrary="Shared Documents" target="Iteration 1/Triage.xlsx" queryId="Current Iteration/Bug Triage" />
           <!-- Samples - Logistics -->
           <file source="Windows SharePoint Services\Samples and Templates\Logistics\Sample Document - Logistics and Rollout Plan.docx" documentLibrary="Samples and Templates" target="Logistics/Sample Document - Logistics and Rollout Plan.docx" />
           <file source="Windows SharePoint Services\Samples and Templates\Logistics\Document Template - Logistics and Rollout Plan.dotx" documentLibrary="Samples and Templates" target="Logistics/Document Template - Logistics and Rollout Plan.dotx" />
