@@ -8,7 +8,7 @@
            [System.Reason]
       FROM WorkItems
      WHERE [System.TeamProject] = @project
-      AND  [System.IterationPath] UNDER '$$PROJECTNAME$$\Iteration 1'
+      AND  [System.IterationPath] UNDER '$$PROJECTNAME$$'
       AND  [System.WorkItemType] = 'User Story'
       AND  [System.State] = 'Closed'
       AND  [System.Reason] = 'Acceptance tests pass'

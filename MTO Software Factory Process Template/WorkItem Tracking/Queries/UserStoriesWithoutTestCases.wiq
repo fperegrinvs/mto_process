@@ -9,7 +9,7 @@
                 Source.[System.TeamProject] = @project
             AND Source.[System.WorkItemType] = 'User Story'
            )
-       AND Source.[System.IterationPath] UNDER '$$PROJECTNAME$$\Iteration 1'
+       AND Source.[System.IterationPath] UNDER '$$PROJECTNAME$$'
        AND Source.[System.State] &lt;&gt; 'Removed'
        AND System.Links.LinkType &lt;&gt; ''
        AND Target.[System.WorkItemType] = 'Test Case'

@@ -3,13 +3,7 @@
   <task id="UploadStructure" name="Creating project structure" plugin="Microsoft.ProjectCreationWizard.Classification" completionMessage="Team project structure created.">
     <taskXml>
       <Nodes>
-        <Node StructureType="ProjectLifecycle" Name="Iteration" xmlns="">
-          <Children>
-            <Node StructureType="ProjectLifecycle" Name="Iteration 1" />
-            <Node StructureType="ProjectLifecycle" Name="Iteration 2" />
-            <Node StructureType="ProjectLifecycle" Name="Iteration 3" />
-          </Children>
-        </Node>
+        <Node StructureType="ProjectLifecycle" Name="Iteration" xmlns="" />
         <Node StructureType="ProjectModelHierarchy" Name="Area" xmlns="" />
       </Nodes>
       <properties>
