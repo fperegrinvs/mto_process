@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<workItemType xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="12.0.0.0" Name="Task" source="task.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner">
+  <States>
+    <state Name="To Do">
+      <Source>
+        <transitionMoniker Name="/Task/New~Active" />
+        <transitionMoniker Name="/Task/New~Closed" />
+        <transitionMoniker Name="/Task/New~Removed" />
+        <transitionMoniker Name="/Task/To Do~Blocked" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="e862e3c8-e406-4556-981d-8632c283022b" ruleTag="- ">
+          <fieldMoniker Name="/Task/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="400e82ee-6ce5-4e52-9def-78f8a6a11b97" ruleTag="- ">
+          <fieldMoniker Name="/Task/Closed By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="232c1368-b45e-48df-9b77-f16b7df016ee" ruleTag="- ">
+          <fieldMoniker Name="/Task/Activated Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="774c6abb-d278-473c-899c-e781b2a6c371" ruleTag="- ">
+          <fieldMoniker Name="/Task/Activated By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Working">
+      <Source>
+        <transitionMoniker Name="/Task/Active~New" />
+        <transitionMoniker Name="/Task/Active~Closed" />
+        <transitionMoniker Name="/Task/Active~Removed" />
+        <transitionMoniker Name="/Task/Working~Blocked" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="cf50441e-ab7a-495a-9107-51229fd0727f" ruleTag="- ">
+          <fieldMoniker Name="/Task/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="76c1e592-c6bb-41b9-ac33-31f88aeba6da" ruleTag="- ">
+          <fieldMoniker Name="/Task/Closed By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Closed">
+      <Source>
+        <transitionMoniker Name="/Task/Closed~Active" />
+        <transitionMoniker Name="/Task/Closed~New" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="d025968a-5814-43db-8c6c-1463ba9e8e01" ruleTag="+ ">
+          <fieldMoniker Name="/Task/Closed Date" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Removed">
+      <Source>
+        <transitionMoniker Name="/Task/Removed~New" />
+      </Source>
+    </state>
+    <state Name="Blocked">
+      <Source>
+        <transitionMoniker Name="/Task/Blocked~To Do" />
+        <transitionMoniker Name="/Task/Blocked~Working" />
+      </Source>
+    </state>
+  </States>
+  <Fields>
+    <field Name="Activated By" referenceName="Microsoft.VSTS.Common.ActivatedBy" />
+    <field Name="Activated Date" referenceName="Microsoft.VSTS.Common.ActivatedDate" />
+    <field Name="Assigned To" referenceName="System.AssignedTo" />
+    <field Name="Closed Date" referenceName="Microsoft.VSTS.Common.ClosedDate" />
+    <field Name="Closed By" referenceName="Microsoft.VSTS.Common.ClosedBy" />
+  </Fields>
+  <Transitions>
+    <transition Id="f6f1a801-6b72-4b83-9a83-9c8b749b661f" Name="~New">
+      <Target>
+        <stateMoniker Name="/Task/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="New" />
+      </Reasons>
+    </transition>
+    <transition Id="69007ee5-d493-4e76-9ac6-1aabf3303f3e" Name="New~Active">
+      <Target>
+        <stateMoniker Name="/Task/Working" />
+      </Target>
+      <Reasons>
+        <reason Name="Work started" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.StartWork" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Task/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="7fa5f3e3-fabb-490b-b7fd-449802f4b17c" Name="Active~New">
+      <Target>
+        <stateMoniker Name="/Task/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="Work halted" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.StopWork" />
+      </actions>
+    </transition>
+    <transition Id="b00e6d93-bd2c-4bb9-ab64-3400fe74aade" Name="Active~Closed">
+      <Target>
+        <stateMoniker Name="/Task/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Cut" />
+        <reason Name="Deferred" />
+        <reason Name="Obsolete" />
+        <reason Name="Completed" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.Checkin" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Task/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="d8efeaf7-79d3-4ae9-aabd-3bd4f84a19d4" Name="New~Closed">
+      <Target>
+        <stateMoniker Name="/Task/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Cut" />
+        <reason Name="Deferred" />
+        <reason Name="Obsolete" />
+        <reason Name="Completed" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.Checkin" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Task/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="740f5ad6-ac33-4bef-91c6-817d80abc1e5" Name="Closed~Active">
+      <Target>
+        <stateMoniker Name="/Task/Working" />
+      </Target>
+      <Reasons>
+        <reason Name="Reactivated" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Task/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="3dd769f6-9667-4743-9f31-682d68350806" Name="Closed~New">
+      <Target>
+        <stateMoniker Name="/Task/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="Reactivated" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Task/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="760aae73-c83c-4377-a658-07eb318b63fd" Name="New~Removed">
+      <Target>
+        <stateMoniker Name="/Task/Removed" />
+      </Target>
+      <Reasons>
+        <reason Name="Removed from the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="78a44933-8d76-40ee-a120-74b2d8d3bdb5" Name="Active~Removed">
+      <Target>
+        <stateMoniker Name="/Task/Removed" />
+      </Target>
+      <Reasons>
+        <reason Name="Removed from the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="ae8fc9f9-ea7f-4e7a-ae88-437125b2e0fe" Name="Removed~New">
+      <Target>
+        <stateMoniker Name="/Task/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="Reconsidering the Task" />
+      </Reasons>
+    </transition>
+    <transition Id="268e8a36-3df7-4415-a597-77c2ef83720f" Name="To Do~Blocked">
+      <Target>
+        <stateMoniker Name="/Task/Blocked" />
+      </Target>
+      <Reasons>
+        <reason Name="Work Blocked" />
+      </Reasons>
+    </transition>
+    <transition Id="67e5c6b1-d624-4680-a748-f5662e959e09" Name="Blocked~To Do">
+      <Target>
+        <stateMoniker Name="/Task/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="Issue Removed" />
+      </Reasons>
+    </transition>
+    <transition Id="61e8f51b-8743-4283-a09e-7ea045d4c7f9" Name="Blocked~Working">
+      <Target>
+        <stateMoniker Name="/Task/Working" />
+      </Target>
+      <Reasons>
+        <reason Name="Issue Removed" />
+      </Reasons>
+    </transition>
+    <transition Id="fe6eceec-817a-4225-b962-43a2f26465e1" Name="Working~Blocked">
+      <Target>
+        <stateMoniker Name="/Task/Blocked" />
+      </Target>
+      <Reasons>
+        <reason Name="Work Blocked" />
+      </Reasons>
+    </transition>
+  </Transitions>
+</workItemType>
