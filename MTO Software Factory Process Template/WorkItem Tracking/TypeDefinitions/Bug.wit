@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workItemType xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="12.0.0.0" Name="Bug" source="F:\Teste\mto_process\MTO Software Factory Process Template\WorkItem Tracking\TypeDefinitions\Bug.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner">
+  <States>
+    <state Name="Active">
+      <Source>
+        <transitionMoniker Name="/Bug/Active~Resolved" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="0c5a8422-40e0-4efe-b3db-6c6bee864eda" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Resolved Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="c70af3b7-d9f4-40e2-a2e5-2f31406b6580" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Resolved By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="f6b031fc-1b03-4812-8d4c-27d044376a61" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Resolved Reason" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="922fea38-cf8b-4766-97a9-21afb0c93acd" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="6a309b24-39e1-457c-b630-7a7cd1d197f5" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Closed By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Resolved">
+      <Source>
+        <transitionMoniker Name="/Bug/Resolved~Active" />
+        <transitionMoniker Name="/Bug/Resolved~Closed" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="0d6190dc-597c-4b9a-8ddc-ccc2b8bd4e30" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="eb79934d-058c-4692-ab8c-a3c1b88a8474" ruleTag="- ">
+          <fieldMoniker Name="/Bug/Closed By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="77a63887-ac4b-4170-a84a-401bdcb5fd51" ruleTag="+ ">
+          <fieldMoniker Name="/Bug/Resolved Reason" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Closed">
+      <Source>
+        <transitionMoniker Name="/Bug/Closed~Active" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="c1010a2e-997b-475d-8ed0-d8ffd289de23" ruleTag="* ">
+          <fieldMoniker Name="/Bug/Resolved Reason" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+  </States>
+  <Fields>
+    <field Name="Activated By" referenceName="Microsoft.VSTS.Common.ActivatedBy" />
+    <field Name="Activated Date" referenceName="Microsoft.VSTS.Common.ActivatedDate" />
+    <field Name="Assigned To" referenceName="System.AssignedTo" />
+    <field Name="Resolved By" referenceName="Microsoft.VSTS.Common.ResolvedBy" />
+    <field Name="Resolved Date" referenceName="Microsoft.VSTS.Common.ResolvedDate" />
+    <field Name="Resolved Reason" referenceName="Microsoft.VSTS.Common.ResolvedReason" />
+    <field Name="Closed Date" referenceName="Microsoft.VSTS.Common.ClosedDate" />
+    <field Name="Closed By" referenceName="Microsoft.VSTS.Common.ClosedBy" />
+  </Fields>
+  <Transitions>
+    <transition Id="5d515109-4a17-416d-b004-59d9b081194d" Name="~Active">
+      <Target>
+        <stateMoniker Name="/Bug/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Build Failure" />
+        <reason Name="New" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Bug/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated Date" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="d9cf75f5-99f4-4104-abab-1bd4393488ea" Name="Active~Resolved">
+      <Target>
+        <stateMoniker Name="/Bug/Resolved" />
+      </Target>
+      <Reasons>
+        <reason Name="Deferred" />
+        <reason Name="Duplicate" />
+        <reason Name="As Designed" />
+        <reason Name="Cannot Reproduce" />
+        <reason Name="Obsolete" />
+        <reason Name="Copied to Backlog" />
+        <reason Name="Fixed" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.Checkin" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Assigned To" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Bug/Resolved By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Resolved Reason" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="b16de8bf-4e89-4e2e-9c79-fb96eb429150" Name="Resolved~Active">
+      <Target>
+        <stateMoniker Name="/Bug/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Test Failed" />
+        <reason Name="Not fixed" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Bug/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="2f1e8b18-10cd-45d3-91cb-1b4b5bcb459c" Name="Resolved~Closed">
+      <Target>
+        <stateMoniker Name="/Bug/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Verified" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Resolved By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Bug/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="327b9e13-f2df-43c0-90d1-34092b15285c" Name="Closed~Active">
+      <Target>
+        <stateMoniker Name="/Bug/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Reactivated" />
+        <reason Name="Regression" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/Bug/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/Bug/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+  </Transitions>
+</workItemType>

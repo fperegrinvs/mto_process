@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProcessTemplate>
   <metadata>
-    <name>MSF for Agile Software Development 2013</name>
+    <name>MTO Software Factory Process Template</name>
     <description>This template is flexible and will work great for most teams using Agile planning methods, including those practicing Scrum.</description>
     <version type="ADCC42AB-9882-485E-A3ED-7678F01F66BC" major="7" minor="17" />
     <plugins>

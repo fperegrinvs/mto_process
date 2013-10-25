@@ -8,6 +8,15 @@
         <REQUIRED />
         <HELPTEXT>Stories affected and how</HELPTEXT>
       </FIELD>
+      <FIELD name="Remaining Work" refname="Microsoft.VSTS.Scheduling.RemainingWork" type="Double" reportable="measure">
+        <HELPTEXT>An estimate of the number of units of work remaining to complete this task</HELPTEXT>
+      </FIELD>
+      <FIELD name="Original Estimate" refname="Microsoft.VSTS.Scheduling.OriginalEstimate" type="Double" reportable="measure">
+        <HELPTEXT>Initial value for Remaining Work - set once, when work begins</HELPTEXT>
+      </FIELD>
+      <FIELD name="Completed Work" refname="Microsoft.VSTS.Scheduling.CompletedWork" type="Double" reportable="measure">
+        <HELPTEXT>The number of units of work that have been spent on this task</HELPTEXT>
+      </FIELD>
       <FIELD name="System Info" refname="Microsoft.VSTS.TCM.SystemInfo" type="HTML">
         <HELPTEXT>Test context, provided automatically by test infrastructure</HELPTEXT>
       </FIELD>
@@ -365,7 +374,7 @@
           </Column>
         </Group>
         <Group Margin="(10,0,0,0)">
-          <Column PercentWidth="33">
+          <Column PercentWidth="30">
             <Group Label="Status">
               <Column PercentWidth="100">
                 <Control FieldName="System.AssignedTo" EmptyText="&lt;No one&gt;" Type="FieldControl" Label="Assi&amp;gned To" LabelPosition="Left" />
@@ -375,7 +384,16 @@
               </Column>
             </Group>
           </Column>
-          <Column PercentWidth="33">
+          <Column PercentWidth="20">
+            <Group Label="Planning">
+              <Column PercentWidth="100">
+                <Control FieldName="Microsoft.VSTS.Common.StackRank" Type="FieldControl" Label="Stack Rank" LabelPosition="Left" NumberFormat="DecimalNumbers" MaxLength="10" EmptyText="&lt;None&gt;" />
+                <Control FieldName="Microsoft.VSTS.Common.Priority" Type="FieldControl" Label="Priority" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.Severity" Type="FieldControl" Label="Severity" LabelPosition="Left" />
+              </Column>
+            </Group>
+          </Column>
+          <Column PercentWidth="30">
             <Group Label="Classification">
               <Column PercentWidth="100">
                 <Control FieldName="System.AreaPath" Type="WorkItemClassificationControl" Label="&amp;Area" LabelPosition="Left" />
@@ -383,13 +401,13 @@
               </Column>
             </Group>
           </Column>
-          <Column PercentWidth="33">
-            <Group Label="Planning">
+          <Column PercentWidth="100">
+            <Group Label="Effort (Hours)">
               <Column PercentWidth="100">
-                <Control FieldName="Microsoft.VSTS.Common.StackRank" Type="FieldControl" Label="Stack Rank" LabelPosition="Left" NumberFormat="DecimalNumbers" MaxLength="10" EmptyText="&lt;None&gt;" />
-                <Control FieldName="Microsoft.VSTS.Common.Priority" Type="FieldControl" Label="Priority" LabelPosition="Left" />
-                <Control FieldName="Microsoft.VSTS.Common.Severity" Type="FieldControl" Label="Severity" LabelPosition="Left" />
-              </Column>
+			    <Control FieldName="Microsoft.VSTS.Scheduling.OriginalEstimate" Type="FieldControl" Label="Original Estimate" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Scheduling.RemainingWork" Type="FieldControl" Label="Remaining" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Scheduling.CompletedWork" Type="FieldControl" Label="Completed" LabelPosition="Left" />
+			  </Column>
             </Group>
           </Column>
         </Group>
