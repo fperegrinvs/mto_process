@@ -19,11 +19,12 @@
   <PortfolioBacklogs>
     <PortfolioBacklog category="Microsoft.FeatureCategory" pluralName="Features" singularName="Feature">
       <States>
-      <State value="New" type="Proposed" />
-      <State value="Active" type="InProgress" />
-      <State value="Resolved" type="InProgress" />
+      <State value="To Do" type="Proposed" />
+      <State value="Working" type="InProgress" />
+      <State value="Blocked" type="InProgress" />
       <State value="Closed" type="Complete" />
-      </States>
+      <State value="Removed" type="Complete" />      
+	 </States>
       <Columns>
         <Column refname="System.WorkItemType" width="100" />
         <Column refname="System.Title" width="400" />
@@ -40,11 +41,12 @@
   </PortfolioBacklogs>
   <RequirementBacklog category="Microsoft.RequirementCategory" pluralName="Stories" singularName="User Story">
     <States>
-      <State value="New" type="Proposed" />
-      <State value="Active" type="InProgress" />
-      <State value="Resolved" type="InProgress" />
+      <State value="To Do" type="Proposed" />
+      <State value="Working" type="InProgress" />
+      <State value="Blocked" type="InProgress" />
       <State value="Closed" type="Complete" />
-    </States>
+      <State value="Removed" type="Complete" />    
+	</States>
     <Columns>
       <Column refname="System.WorkItemType" width="100" />
       <Column refname="System.Title" width="400" />
@@ -61,9 +63,11 @@
   </RequirementBacklog>
   <TaskBacklog category="Microsoft.TaskCategory" pluralName="Tasks" singularName="Task">
     <States>
-      <State value="New" type="Proposed" />
-      <State value="Active" type="InProgress" />
+      <State value="To Do" type="Proposed" />
+      <State value="Working" type="InProgress" />
+      <State value="Blocked" type="InProgress" />
       <State value="Closed" type="Complete" />
+      <State value="Removed" type="Complete" />
     </States>
     <Columns>
       <Column refname="System.Title" width="400" />
@@ -79,9 +83,11 @@
   </TaskBacklog>
   <BugWorkItems category="Microsoft.BugCategory" pluralName="Bugs" singularName="Bug">
     <States>
-      <State value="Active" type="InProgress" />
-      <State value="Resolved" type="Resolved" />
+      <State value="To Do" type="Proposed" />
+      <State value="Working" type="InProgress" />
+      <State value="Blocked" type="InProgress" />
       <State value="Closed" type="Complete" />
+      <State value="Removed" type="Complete" />      
     </States>
   </BugWorkItems>
   <FeedbackRequestWorkItems category="Microsoft.FeedbackRequestCategory" pluralName="Feedback Requests" singularName="Feedback Request">

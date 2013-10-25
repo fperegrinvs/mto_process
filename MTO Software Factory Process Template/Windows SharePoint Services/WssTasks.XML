@@ -10,9 +10,6 @@
           <documentLibrary name="Process Guidance" description="How to make best use of the Team Foundation Server tools and process" isProcessGuidance="true" />
         </documentLibraries>
         <folders>
-          <folder documentLibrary="Shared Documents" name="Iteration 1" />
-          <folder documentLibrary="Shared Documents" name="Iteration 2" />
-          <folder documentLibrary="Shared Documents" name="Iteration 3" />
           <folder documentLibrary="Samples and Templates" name="Logistics" />
           <folder documentLibrary="Samples and Templates" name="Personas and Design" />
           <folder documentLibrary="Samples and Templates" name="Retrospectives" />

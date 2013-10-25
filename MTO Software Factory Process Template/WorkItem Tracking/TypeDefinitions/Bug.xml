@@ -337,12 +337,10 @@
               <READONLY />
             </FIELD>
             <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
-              <SERVERDEFAULT from="clock" />
+              <EMPTY />
             </FIELD>
             <FIELD refname="Microsoft.VSTS.Common.ClosedBy">
-              <COPY from="currentuser" />
-              <VALIDUSER />
-              <REQUIRED />
+              <EMPTY />
             </FIELD>
           </FIELDS>
         </TRANSITION>
