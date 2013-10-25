@@ -1,41 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<workItemType xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="12.0.0.0" Name="Bug" source="F:\Teste\mto_process\MTO Software Factory Process Template\WorkItem Tracking\TypeDefinitions\Bug.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<workItemType xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="12.0.0.0" Name="Bug" source="bug.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner">
   <States>
-    <state Name="Active">
+    <state Name="To Do">
       <Source>
-        <transitionMoniker Name="/Bug/Active~Resolved" />
+        <transitionMoniker Name="/Bug/Resolved~Closed" />
+        <transitionMoniker Name="/Bug/To Do~Blocked" />
       </Source>
       <fields>
-        <stateFieldConstraint Id="0c5a8422-40e0-4efe-b3db-6c6bee864eda" ruleTag="- ">
+        <stateFieldConstraint Id="dbadca58-766a-4d77-be31-3b6215d3e38c" ruleTag="- ">
           <fieldMoniker Name="/Bug/Resolved Date" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="c70af3b7-d9f4-40e2-a2e5-2f31406b6580" ruleTag="- ">
+        <stateFieldConstraint Id="9bbc289c-7aaa-40f3-b66e-ae874a0315af" ruleTag="- ">
           <fieldMoniker Name="/Bug/Resolved By" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="f6b031fc-1b03-4812-8d4c-27d044376a61" ruleTag="- ">
+        <stateFieldConstraint Id="da0bb1a8-3ca3-4c37-9d4a-941efb21030a" ruleTag="- ">
           <fieldMoniker Name="/Bug/Resolved Reason" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="922fea38-cf8b-4766-97a9-21afb0c93acd" ruleTag="- ">
+        <stateFieldConstraint Id="64206c56-b827-4935-94f0-67a1f562986e" ruleTag="- ">
           <fieldMoniker Name="/Bug/Closed Date" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="6a309b24-39e1-457c-b630-7a7cd1d197f5" ruleTag="- ">
+        <stateFieldConstraint Id="712e498b-0d68-4612-afaa-ab290687c64b" ruleTag="- ">
           <fieldMoniker Name="/Bug/Closed By" />
         </stateFieldConstraint>
       </fields>
     </state>
-    <state Name="Resolved">
+    <state Name="Working">
       <Source>
         <transitionMoniker Name="/Bug/Resolved~Active" />
-        <transitionMoniker Name="/Bug/Resolved~Closed" />
+        <transitionMoniker Name="/Bug/Active~Resolved" />
+        <transitionMoniker Name="/Bug/Working~Blocked" />
       </Source>
       <fields>
-        <stateFieldConstraint Id="0d6190dc-597c-4b9a-8ddc-ccc2b8bd4e30" ruleTag="- ">
+        <stateFieldConstraint Id="6c424cda-7d19-42b8-aa54-cdbf000af27d" ruleTag="- ">
           <fieldMoniker Name="/Bug/Closed Date" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="eb79934d-058c-4692-ab8c-a3c1b88a8474" ruleTag="- ">
+        <stateFieldConstraint Id="6527e901-4a2f-452c-9fd9-96c8ed41d1ca" ruleTag="- ">
           <fieldMoniker Name="/Bug/Closed By" />
         </stateFieldConstraint>
-        <stateFieldConstraint Id="77a63887-ac4b-4170-a84a-401bdcb5fd51" ruleTag="+ ">
+        <stateFieldConstraint Id="26f4fb3f-b0dc-433a-8193-19659ac4d7b7" ruleTag="+ ">
           <fieldMoniker Name="/Bug/Resolved Reason" />
         </stateFieldConstraint>
       </fields>
@@ -45,10 +47,16 @@
         <transitionMoniker Name="/Bug/Closed~Active" />
       </Source>
       <fields>
-        <stateFieldConstraint Id="c1010a2e-997b-475d-8ed0-d8ffd289de23" ruleTag="* ">
+        <stateFieldConstraint Id="cc56b39c-dc43-4297-bdbb-d631eb3420a9" ruleTag="* ">
           <fieldMoniker Name="/Bug/Resolved Reason" />
         </stateFieldConstraint>
       </fields>
+    </state>
+    <state Name="Blocked">
+      <Source>
+        <transitionMoniker Name="/Bug/Blocked~To Do" />
+        <transitionMoniker Name="/Bug/Blocked~Working" />
+      </Source>
     </state>
   </States>
   <Fields>
@@ -64,7 +72,7 @@
   <Transitions>
     <transition Id="5d515109-4a17-416d-b004-59d9b081194d" Name="~Active">
       <Target>
-        <stateMoniker Name="/Bug/Active" />
+        <stateMoniker Name="/Bug/To Do" />
       </Target>
       <Reasons>
         <reason Name="Build Failure" />
@@ -81,7 +89,7 @@
     </transition>
     <transition Id="d9cf75f5-99f4-4104-abab-1bd4393488ea" Name="Active~Resolved">
       <Target>
-        <stateMoniker Name="/Bug/Resolved" />
+        <stateMoniker Name="/Bug/Closed" />
       </Target>
       <Reasons>
         <reason Name="Deferred" />
@@ -118,7 +126,7 @@
     </transition>
     <transition Id="b16de8bf-4e89-4e2e-9c79-fb96eb429150" Name="Resolved~Active">
       <Target>
-        <stateMoniker Name="/Bug/Active" />
+        <stateMoniker Name="/Bug/To Do" />
       </Target>
       <Reasons>
         <reason Name="Test Failed" />
@@ -138,7 +146,7 @@
     </transition>
     <transition Id="2f1e8b18-10cd-45d3-91cb-1b4b5bcb459c" Name="Resolved~Closed">
       <Target>
-        <stateMoniker Name="/Bug/Closed" />
+        <stateMoniker Name="/Bug/Working" />
       </Target>
       <Reasons>
         <reason Name="Verified" />
@@ -166,7 +174,7 @@
     </transition>
     <transition Id="327b9e13-f2df-43c0-90d1-34092b15285c" Name="Closed~Active">
       <Target>
-        <stateMoniker Name="/Bug/Active" />
+        <stateMoniker Name="/Bug/To Do" />
       </Target>
       <Reasons>
         <reason Name="Reactivated" />
@@ -183,6 +191,38 @@
           <fieldMoniker Name="/Bug/Assigned To" />
         </transitionFieldConstraint>
       </fields>
+    </transition>
+    <transition Id="a041e4ff-e5f5-4325-b594-a03cf638a7a9" Name="To Do~Blocked">
+      <Target>
+        <stateMoniker Name="/Bug/Blocked" />
+      </Target>
+      <Reasons>
+        <reason Name="Work Blocked" />
+      </Reasons>
+    </transition>
+    <transition Id="aac56ede-f870-45d2-ac5e-ebb783292706" Name="Blocked~To Do">
+      <Target>
+        <stateMoniker Name="/Bug/To Do" />
+      </Target>
+      <Reasons>
+        <reason Name="Issue Removed" />
+      </Reasons>
+    </transition>
+    <transition Id="cdb63483-342b-4d50-8c8b-1e8a413a0367" Name="Blocked~Working">
+      <Target>
+        <stateMoniker Name="/Bug/Working" />
+      </Target>
+      <Reasons>
+        <reason Name="Issue Removed" />
+      </Reasons>
+    </transition>
+    <transition Id="ab890f41-be9f-49db-b8ee-104c2cc4f522" Name="Working~Blocked">
+      <Target>
+        <stateMoniker Name="/Bug/Blocked" />
+      </Target>
+      <Reasons>
+        <reason Name="Work Blocked" />
+      </Reasons>
     </transition>
   </Transitions>
 </workItemType>
