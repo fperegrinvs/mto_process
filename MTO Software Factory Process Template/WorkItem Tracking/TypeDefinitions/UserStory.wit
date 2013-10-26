@@ -1,1 +1,349 @@
-<?xml version="1.0" encoding="utf-8"?><workItemType dslVersion="12.0.0.0" Name="User Story" source="F:\Teste\Agile Template\MSF for Agile Software Development 2013\WorkItem Tracking\TypeDefinitions\UserStory.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<workItemType xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="12.0.0.0" Name="User Story" source="userstory.xml" xmlns="http://schemas.microsoft.com/dsltools/WITDesigner">
+  <States>
+    <state Name="New">
+      <Source>
+        <transitionMoniker Name="/User Story/New~Active" />
+        <transitionMoniker Name="/User Story/New~Resolved" />
+        <transitionMoniker Name="/User Story/New~Removed" />
+        <transitionMoniker Name="/User Story/New~Closed" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="4f309069-df67-41fc-813b-90cda1602c58" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="fc8523cd-97c5-46ca-a46d-34161d4236f0" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="29e6c88f-e553-4682-b2d9-3c22b6779c6e" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="74289199-123c-4746-bac2-6de6c4efc82c" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="b27b3e2f-a3a5-4e1d-ae97-2f8f8d15ceb0" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="08946ff6-550a-44b7-90ef-185d7d4f2c7c" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Active">
+      <Source>
+        <transitionMoniker Name="/User Story/Active~New" />
+        <transitionMoniker Name="/User Story/Active~Resolved" />
+        <transitionMoniker Name="/User Story/Active~Closed" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="f1cd2b64-873e-4c19-822a-ca84a2345e31" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="cd79d8e8-e71f-4ebf-8e97-f42e544f9ee9" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="4885f3c2-9465-48fd-a50d-ac44c5f11c46" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="f0418fac-f20a-453a-8cfc-a38cc008b570" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Resolved">
+      <Source>
+        <transitionMoniker Name="/User Story/Resolved~Closed" />
+        <transitionMoniker Name="/User Story/Resolved~Active" />
+        <transitionMoniker Name="/User Story/Resolved~New" />
+      </Source>
+      <fields>
+        <stateFieldConstraint Id="b9597483-1c16-4132-b288-ddcfb9a19215" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </stateFieldConstraint>
+        <stateFieldConstraint Id="58da2b4b-ce8c-4137-9d3d-d4af24eb26db" ruleTag="- ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </stateFieldConstraint>
+      </fields>
+    </state>
+    <state Name="Closed">
+      <Source>
+        <transitionMoniker Name="/User Story/Closed~Active" />
+        <transitionMoniker Name="/User Story/Closed~Resolved" />
+        <transitionMoniker Name="/User Story/Closed~New" />
+      </Source>
+    </state>
+    <state Name="Removed">
+      <Source>
+        <transitionMoniker Name="/User Story/Removed~New" />
+      </Source>
+    </state>
+  </States>
+  <Fields>
+    <field Name="Activated By" referenceName="Microsoft.VSTS.Common.ActivatedBy" />
+    <field Name="Activated Date" referenceName="Microsoft.VSTS.Common.ActivatedDate" />
+    <field Name="Assigned To" referenceName="System.AssignedTo" />
+    <field Name="Resolved Date" referenceName="Microsoft.VSTS.Common.ResolvedDate" />
+    <field Name="Resolved By" referenceName="Microsoft.VSTS.Common.ResolvedBy" />
+    <field Name="Closed Date" referenceName="Microsoft.VSTS.Common.ClosedDate" />
+    <field Name="Closed By" referenceName="Microsoft.VSTS.Common.ClosedBy" />
+  </Fields>
+  <Transitions>
+    <transition Id="90566c51-6082-40bd-ada5-ab9c3be09c10" Name="~New">
+      <Target>
+        <stateMoniker Name="/User Story/New" />
+      </Target>
+      <Reasons>
+        <reason Name="New" />
+      </Reasons>
+    </transition>
+    <transition Id="0bfa895a-5316-4375-96f6-5161edb12af1" Name="New~Active">
+      <Target>
+        <stateMoniker Name="/User Story/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Implementation started" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Assigned To" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="ec5226bd-2630-4dfe-81dc-be34bfea183c" Name="New~Resolved">
+      <Target>
+        <stateMoniker Name="/User Story/Resolved" />
+      </Target>
+      <Reasons>
+        <reason Name="Code complete and unit tests pass" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.Checkin" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Assigned To" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="fb274382-fbf8-4626-9efe-320ba9939f01" Name="New~Removed">
+      <Target>
+        <stateMoniker Name="/User Story/Removed" />
+      </Target>
+      <Reasons>
+        <reason Name="Removed from the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="60d83a12-b02a-4689-8b0b-770303f2148e" Name="Active~New">
+      <Target>
+        <stateMoniker Name="/User Story/New" />
+      </Target>
+      <Reasons>
+        <reason Name="Implementation halted" />
+        <reason Name="Moved to the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="11417550-229f-4ae9-a6cb-088241083997" Name="Active~Resolved">
+      <Target>
+        <stateMoniker Name="/User Story/Resolved" />
+      </Target>
+      <Reasons>
+        <reason Name="Code complete and unit tests pass" />
+      </Reasons>
+      <actions>
+        <action Name="Microsoft.VSTS.Actions.Checkin" />
+      </actions>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="9ef70c1f-3f6f-44b4-a1e2-ae4be7e20be9" Name="Resolved~Closed">
+      <Target>
+        <stateMoniker Name="/User Story/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Acceptance tests pass" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="c2af25a7-9252-464a-a0fc-e6e91112d484" Name="Resolved~Active">
+      <Target>
+        <stateMoniker Name="/User Story/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Acceptance tests fail" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="c4a6d7c1-2938-42df-9594-9b2c5aaf923b" Name="Active~Closed">
+      <Target>
+        <stateMoniker Name="/User Story/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Abandoned" />
+        <reason Name="Out of scope" />
+        <reason Name="Rejected" />
+        <reason Name="Acceptance tests pass" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="ce0e26cd-4909-454b-90ed-880b1b2797bb" Name="Closed~Active">
+      <Target>
+        <stateMoniker Name="/User Story/Active" />
+      </Target>
+      <Reasons>
+        <reason Name="Closed in error" />
+        <reason Name="Reintroduced in Scope" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="de95da51-f3e6-4002-acbf-b580d0af68ba" Name="Closed~Resolved">
+      <Target>
+        <stateMoniker Name="/User Story/Resolved" />
+      </Target>
+      <Reasons>
+        <reason Name="Closed in error" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="+* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+    <transition Id="58c4bb32-94f7-438b-962d-c5210512895a" Name="Removed~New">
+      <Target>
+        <stateMoniker Name="/User Story/New" />
+      </Target>
+      <Reasons>
+        <reason Name="Reconsidering the User Story" />
+      </Reasons>
+    </transition>
+    <transition Id="ad0f3b63-1340-4961-aad5-0aad6bf1140c" Name="Resolved~New">
+      <Target>
+        <stateMoniker Name="/User Story/New" />
+      </Target>
+      <Reasons>
+        <reason Name="Moved to the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="d9fb09f7-7a48-4de6-9473-65e4a2d5a312" Name="Closed~New">
+      <Target>
+        <stateMoniker Name="/User Story/New" />
+      </Target>
+      <Reasons>
+        <reason Name="Moved to the backlog" />
+      </Reasons>
+    </transition>
+    <transition Id="ca7a7b39-a446-4aec-a6d9-a519511355bb" Name="New~Closed">
+      <Target>
+        <stateMoniker Name="/User Story/Closed" />
+      </Target>
+      <Reasons>
+        <reason Name="Acceptance tests pass" />
+      </Reasons>
+      <fields>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Activated By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Resolved By" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Closed Date" />
+        </transitionFieldConstraint>
+        <transitionFieldConstraint ruleTag="* ">
+          <fieldMoniker Name="/User Story/Closed By" />
+        </transitionFieldConstraint>
+      </fields>
+    </transition>
+  </Transitions>
+</workItemType>

@@ -104,6 +104,17 @@
         </WHENNOTCHANGED>
         <ALLOWEXISTINGVALUE />
       </FIELD>
+      <FIELD name="Activity" refname="Microsoft.VSTS.Common.Activity" type="String" reportable="dimension">
+        <SUGGESTEDVALUES expanditems="true">
+          <LISTITEM value="Development" />
+          <LISTITEM value="Testing" />
+          <LISTITEM value="Requirements" />
+          <LISTITEM value="Design" />
+          <LISTITEM value="Deployment" />
+          <LISTITEM value="Documentation" />
+        </SUGGESTEDVALUES>
+        <HELPTEXT>Type of work involved</HELPTEXT>
+      </FIELD>
       <FIELD name="Priority" refname="Microsoft.VSTS.Common.Priority" type="Integer" reportable="dimension">
         <ALLOWEDVALUES expanditems="true">
           <LISTITEM value="1" />
@@ -409,6 +420,7 @@
                 <Control FieldName="Microsoft.VSTS.Common.StackRank" Type="FieldControl" Label="Stack Rank" LabelPosition="Left" NumberFormat="DecimalNumbers" MaxLength="10" EmptyText="&lt;None&gt;" />
                 <Control FieldName="Microsoft.VSTS.Common.Priority" Type="FieldControl" Label="Priority" LabelPosition="Left" />
                 <Control FieldName="Microsoft.VSTS.Common.Severity" Type="FieldControl" Label="Severity" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.Activity" Type="FieldControl" Label="Activity" LabelPosition="Left" EmptyText="&lt;None&gt;" />
               </Column>
             </Group>
           </Column>
